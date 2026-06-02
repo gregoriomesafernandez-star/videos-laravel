@@ -20,8 +20,7 @@ export default {
                 box: "0px 0px 1px rgba(0, 0, 0, 0.3), 0px 3px 7px rgba(0, 0, 0, 0.3), 0px 1px white inset, 0px -3px 1px rgba(0, 0, 0, 0.3) inset"
             },
             backgroundImage: (theme) => ({
-                'body-pattern': "url('../img/pattern.png')",
-                'banner': "url('../img/bakbaner.png')",
+                'body-pattern': "url('../images/pattern.png')"
 
             }),
             backgroundPosition: {
