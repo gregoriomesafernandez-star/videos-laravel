@@ -1,0 +1,1 @@
+<img src="{{ url('storage/images/logo.png') }}" {{ $attributes->merge(['class' => 'w-[63px] h-[63px]']) }}>

@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*FUENTES*/
+  @font-face {
+    font-family: "TrebuchetMS";
+    src: url("fonts/TrebuchetMS.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "BebasNeue";
+    src: url("fonts/BebasNeue.otf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "WebSymbolsRegular";
+    src: url("fonts/websymbols-regular-webfont.eot");
+    src:
+      url("fonts/websymbols-regular-webfont.eot?#iefix")
+        format("embedded-opentype"),
+      url("fonts/websymbols-regular-webfont.woff") format("woff"),
+      url("fonts/websymbols-regular-webfont.ttf") format("truetype"),
+      url("fonts/websymbols-regular-webfont.svg#WebSymbolsRegular")
+        format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .symbol {
+    font-family: "WebSymbolsRegular";
+  }
+
+  .bebas {
+    font-family: "BebasNeue";
+  }
+
+  .trebuchet {
+    font-family: "TrebuchetMS";
+  }
+}
+
+@layer components {
+
+    .floating-button{
+        @apply
+            bg-gradient-to-b from-blue-400 to-blue-700
+            text-white 
+            rounded-sm
+            shadow-md 
+            hover:-translate-y-1 
+            hover:shadow-xl 
+            transition 
+            duration-200
+        ;
+    }
+
+    .input-search{
+        @apply
+            px-8 py-2 border 
+            border-gray-300                       
+            rounded-full 
+            focus:ring-2 
+            focus:ring-blue-400
+            focus:outline-none 
+            text-sm 
+            transition 
+            duration-500
+    }
+
+}
+
+@layer utilities {
+}
