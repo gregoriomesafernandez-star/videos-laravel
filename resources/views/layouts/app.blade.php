@@ -35,7 +35,7 @@
 
             <!-- Page Content -->
             <main class="flex-1">
-                <div class="max-w-[1600px] mx-auto mt-[100px] p-6">
+                <div class="max-w-[1600px] mx-auto mt-[80px] p-6">
                     {{ $slot }}
                 </div>
                 
@@ -46,6 +46,44 @@
     </body>
 
     <footer class="bg-gray-900 text-gray-300 text-center py-6">
-        <p class="text-sm">© 2026 Curso de Laravel Videos</p>
+        <!-- INICIO TARJETAS -->
+            <div id="cards" class="w-5/12 mx-auto flex xs:gap-4 md:gap-0">
+
+                <div class="card group">
+
+                    <span class="card-icon">
+                        M
+                    </span>
+
+                    <h2 class="card-category">
+                        Vídeos
+                    </h2>
+
+                    <p class="card-description">
+                        Videos HD, comentalos o compartelos con tus amigos
+                    </p>
+
+                </div>
+
+                <div class="card group">
+
+                    <span class="card-icon">
+                        ]
+                    </span>
+
+                    <h2 class="card-category">
+                        Música
+                    </h2>
+
+                    <p class="card-description">
+                        La mejor música de calidad actualizada
+                    </p>
+
+                </div>
+
+                
+
+            </div>
+        <p class="text-sm mt-2">© Proyecto Laravel Videos</p>
     </footer>
 </html>

@@ -73,6 +73,102 @@
             duration-500
     }
 
+      /* ESTILOS DE TARJETAS */
+  .card {
+    @apply flex-1
+        h-80
+        bg-blue-300
+        overflow-hidden
+        m-6
+        mt-10
+        pl-5
+        pr-5
+        cursor-pointer
+        transition
+        duration-300
+        hover:bg-gray-900
+
+        xs:ml-0
+        xs:h-40
+        xs:m-0
+        md:h-40
+        md:m-2
+        lg:h-80
+        lg:m-6;
+  }
+
+  .card-icon {
+    font-family: "WebSymbolsRegular";
+    @apply 
+      block
+      w-full
+      h-32
+      text-5xl
+      text-center
+      mt-12
+      mx-auto
+      transition
+      duration-300
+      text-gray-900
+      group-hover:scale-150
+    group-hover:text-blue-600
+      group-hover:animate-show-card-icon
+
+      xs:p-0
+      xs:scale-100
+      xs:mt-3
+      xs:h-20
+      md:p-4
+      md:mt-3
+      md:h-20
+      lg:mt-12
+      lg:h-32
+    ;
+  }
+
+  .card-category {
+    @apply 
+      w-full
+      h-12
+      text-xl
+      text-center
+      font-bold
+      text-black
+      transition
+      duration-300
+      group-hover:text-white
+      group-hover:animate-show-card-category
+
+
+      xs:text-base
+      xs:h-6
+      md:text-base
+      md:h-6
+      lg:text-lg
+      lg:h-12
+    ;
+  }
+
+  .card-description {
+    font-family: "TrebuchetMs";
+    @apply 
+      text-center
+      text-azul-oscuro
+      text-base
+      transition
+      duration-300
+      group-hover:text-white
+      group-hover:animate-show-card-desc
+
+      xs:hidden
+      md:hidden
+      lg:block
+      lg:text-sm
+      lg:mt-3
+      xl:text-base
+    ;
+  }
+
 }
 
 @layer utilities {

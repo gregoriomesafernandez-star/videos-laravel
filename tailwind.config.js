@@ -32,7 +32,7 @@ export default {
                 'spin-and-down':
                     'animate-none, fromBellow 500ms linear',
                 'spin-right': 'fromRight 300ms linear',
-                'bg-banner': 'backBanner 11s linear forwards',
+                'bg-banner': 'backBanner 14s linear forwards',
                 'text-banner': 'showBannerText 11s linear',
                 'show-card-icon': 'showCardIcon 300ms linear',
                 'show-card-category': 'showCardCategory 400ms linear',
@@ -50,7 +50,7 @@ export default {
                 },
                 backBanner: {
                     '0%': { 'background-position': '0px 0px' },
-                    '100%': { 'background-position': '-530px -255px' }
+                    '100%': { 'background-position': '-530px -455px' }
                 },
                 showBannerText: {
                     '0%': {
@@ -74,6 +74,30 @@ export default {
                     opacity: 1
                     }
                 },
+                showCardIcon: {
+                    'from': {
+                        transform: 'translateY(-200%)'
+                    },
+                    'to': {
+                        transform: 'translateY(0%)' 
+                    }
+                },
+                showCardCategory: {
+                    'from': {
+                        transform: 'translateY(-300%)'
+                    },
+                    'to': {
+                        transform: 'translateY(0%)' 
+                    }
+                },
+                showCardDesc: {
+                    'from': {
+                        transform: 'translateX(-300%)'
+                    },
+                    'to': {
+                        transform: 'translateX(0%)' 
+                    }
+                }
             }
         }
     },
