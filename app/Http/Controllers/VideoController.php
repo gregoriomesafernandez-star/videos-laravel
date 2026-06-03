@@ -71,7 +71,7 @@ class VideoController extends Controller
 
         $video->save();
 
-        return redirect()->route('welcome.index')->with([
+        return redirect()->route('home')->with([
             'message' => 'El video se ha subido correctamente!'
         ]);
     }
@@ -134,12 +134,12 @@ class VideoController extends Controller
             $video->delete();
 
             return redirect()
-                ->route('welcome.index')
+                ->route('home')
                 ->with('message', 'Vídeo eliminado correctamente');
         }
 
         return redirect()
-            ->route('welcome.index')
+            ->route('home')
             ->with('message', 'El vídeo no se ha eliminado'
         );
 
@@ -157,7 +157,7 @@ class VideoController extends Controller
             ]);
 
         } else {
-            return redirect()->route('welcome.index');
+            return redirect()->route('home');
         }
         
     }

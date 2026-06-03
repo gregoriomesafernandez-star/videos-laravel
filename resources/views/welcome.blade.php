@@ -20,7 +20,7 @@
         </h1>
     </div>
 
-    @if(isset($videos))
+    @if($videos->isNotEmpty())
         
         @if(isset($search))
             <p class="text-xl ml-[180px]">
@@ -51,7 +51,7 @@
         @endif
 
         <!-- Videos-grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid w-9/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
 
             @foreach($videos as $video)
 
@@ -99,7 +99,7 @@
                     </div>
 
                     <!-- Botones Editar y Eliminar -->
-                    <div class="flex gap-2 mt-2 flex-wrap">
+                    <div class="flex gap-2 mt-2 mb-4 flex-wrap">
 
                         @auth
                         @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
@@ -115,7 +115,7 @@
                         <div class="" x-data="{ open: false }">
 
                             <!-- BOTÓN Eliminar-->
-                            <button @click="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
+                            <button @click.stop="open = true" @click="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
                                                             shadow transition duration-200 cursor-pointer hover:scale-105">
                                 Eliminar
                             </button>
