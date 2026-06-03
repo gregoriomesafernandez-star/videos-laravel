@@ -41,14 +41,44 @@
 
             @endif
             
+            <!-- Banner -->
+            <div id="banner" class="
+                            h-28
+                            w-11/12
+                            mx-auto
+                            border-8
+                            overflow-hidden
+                            shadow-sm
+                            m-5
+                            bg-no-repeat
+                            bg-banner
+                            animate-bg-banner
+			">
+
+				<h1 class="
+                    text-banner
+                    block
+                    text-white
+                    text-4xl
+                    font-normal
+                    tracking-wider
+                    m-7
+                    mx-auto
+                    text-center
+                    animate-text-banner
+                    xs:text-2xl
+                    xs:mt-8
+				">DESARROLLO WEB GREGORIO MESA FDEZ</h1>
+			</div>
+            
             <div class="videos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 @foreach($videos as $video)
 
                     <!-- Tarjeta video -->
                     <div onclick="window.location='{{ route('video.detail', $video->id) }}'" 
-                         class="w-full bg-gradient-to-br from-slate-300 to-blue-200 video-card cursor-pointer group 
-                                hover:scale-105 transition duration-300 hover:shadow-xl transition duration-500 
+                         class="w-full bg-gradient-to-br from-slate-300 to-blue-200 video-card 
+                                cursor-pointer group hover:scale-105 transition duration-300 hover:shadow-xl 
                                 p-0 ease-in-out shadow-md bg-blue-200 rounded-xl overflow-hidden flex flex-col">
 
                         <!-- Imagen -->

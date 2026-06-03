@@ -19,7 +19,7 @@
 
     </head>
     
-    <body class="bg-body-pattern min-h-screen flex flex-col">
+    <body class="bg-body-pattern min-h-screen">
 
 
             @include('layouts.navigation')
@@ -35,7 +35,7 @@
 
             <!-- Page Content -->
             <main class="flex-1">
-                <div class="max-w-[1600px] mx-auto mt-[100px] p-4">
+                <div class="max-w-[1600px] mx-auto mt-[100px] p-6">
                     {{ $slot }}
                 </div>
                 

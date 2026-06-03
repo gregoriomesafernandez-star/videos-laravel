@@ -1,7 +1,7 @@
 <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50" x-data="{ open: false }">
 
     <!-- Primary Navigation Menu -->
-    <div class="max-w-screen-2xl flex justify-between xs:px-4 lg:px-20">
+    <div class="w-full flex justify-between xs:px-4 lg:px-20">
 
             <div class="flex items-center">
                 <!-- Logo -->

@@ -20,12 +20,9 @@ export default {
                 box: "0px 0px 1px rgba(0, 0, 0, 0.3), 0px 3px 7px rgba(0, 0, 0, 0.3), 0px 1px white inset, 0px -3px 1px rgba(0, 0, 0, 0.3) inset"
             },
             backgroundImage: (theme) => ({
-                'body-pattern': "url('../images/pattern.png')"
-
+                'body-pattern': "url('../images/pattern.png')",
+                'banner': "url('../images/banner-music.png')"
             }),
-            backgroundPosition: {
-                'banner-position': '-200px -200px'
-            },
             colors: {
                 "azul-claro": "#37bcf9",
                 "azul-oscuro": "#0370b9"
@@ -35,8 +32,8 @@ export default {
                 'spin-and-down':
                     'animate-none, fromBellow 500ms linear',
                 'spin-right': 'fromRight 300ms linear',
-                'bg-banner': 'backBanner 10s linear',
-                'text-banner': 'showBannerText 10s linear',
+                'bg-banner': 'backBanner 11s linear forwards',
+                'text-banner': 'showBannerText 11s linear',
                 'show-card-icon': 'showCardIcon 300ms linear',
                 'show-card-category': 'showCardCategory 400ms linear',
                 'show-card-desc': 'showCardDesc 400ms linear'
@@ -51,7 +48,32 @@ export default {
                     '0%': { transform: 'translatex(200%)' },
                     '100%': { transform: 'translatex(0%)' }
                 },
-               
+                backBanner: {
+                    '0%': { 'background-position': '0px 0px' },
+                    '100%': { 'background-position': '-530px -255px' }
+                },
+                showBannerText: {
+                    '0%': {
+                    transform: 'translatex(-600%) scale(5,5)',
+                    opacity: 1
+                    },
+                    '50%': {
+                    transform: 'translatex(600%) scale(5,5)',
+                    opacity: 1  
+                    },
+                    '75%': {
+                    transform: 'translatex(-600%) scale(5,5)',
+                    'text-shadow': 'none',
+                    color: 'transparent',
+                    opacity: 0
+                    },
+                    '100%': {
+                    transform: 'translatex(0%) scale(1,1)',
+                    'text-shadow': '2px 2px 1px black',
+                    color: 'white',
+                    opacity: 1
+                    }
+                },
             }
         }
     },
