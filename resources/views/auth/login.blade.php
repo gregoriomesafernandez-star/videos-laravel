@@ -8,14 +8,14 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-input-line id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-line id="email" class="block w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-input-line id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+        <div>
+            <x-input-label for="password" class="mt-4" :value="__('Password')" />
+            <x-input-line id="password" class="block w-full" type="password" name="password" required autocomplete="current-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -33,15 +33,15 @@
 
         <div class="flex items-center mt-2 mx-auto">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="form-link" href="{{ route('password.request') }}">
                     ¿Olvidaste contraseña?
                 </a>
             @endif
 
          
-                <x-secondary-button class="ms-4" href="{{ route('home') }}" >
-                    ← Volver
-                </x-secondary-button>
+            <x-secondary-button class="ms-4" href="{{ route('home') }}" >
+                ← Volver
+            </x-secondary-button>
             
         </div>
     </form>

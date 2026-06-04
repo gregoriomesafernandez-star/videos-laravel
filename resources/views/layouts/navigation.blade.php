@@ -11,7 +11,8 @@
                 <div class="max-[780px]:hidden flex md:gap-4 lg:gap-10 ms-10">
                     
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                       <i class="fa-solid fa-house me-2"></i> Inicio
+                       <i class="fa-solid fa-house me-2"></i> 
+                       Inicio
                     </x-nav-link>
                     
                     <!-- BUSCAR -->
@@ -72,10 +73,8 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Cerrar Sesión') }}
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                Cerrar Sesión
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -151,7 +150,7 @@
                 </form>
 
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Mis datos') }}
+                    Mis datos
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -161,7 +160,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Cerrar Sesión') }}
+                        Cerrar Sesión
                     </x-responsive-nav-link>
                 </form>
             </div>

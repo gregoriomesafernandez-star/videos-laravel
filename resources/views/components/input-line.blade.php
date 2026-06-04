@@ -1,9 +1,8 @@
-@props(['disabled' => false])
+
 
 <div class="relative w-full mb-2">
 
     <input
-        @disabled($disabled)
         {{ $attributes->merge([
             'class' => 'peer w-full border-0 border-b border-gray-300 bg-transparent focus:outline-none focus:ring-0 py-2'
         ]) }}

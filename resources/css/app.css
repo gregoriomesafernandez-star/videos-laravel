@@ -73,6 +73,18 @@
             duration-500
     }
 
+    .form-link{
+        @apply
+            text-sm 
+            text-gray-600 
+            rounded-sm 
+            focus:outline-none 
+            hover:text-gray-400 
+            hover:underline
+    }
+
+    
+
       /* ESTILOS DE TARJETAS */
   .card {
     @apply flex-1
