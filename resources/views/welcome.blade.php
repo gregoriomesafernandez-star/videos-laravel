@@ -185,7 +185,7 @@
 
     @else
 
-        <p class="text-center text-gray-500 mt-6">
+        <p class="text-center text-lg font-bold text-gray-500 mt-6">
             No hay resultados para tu búsqueda.
         </p>
 

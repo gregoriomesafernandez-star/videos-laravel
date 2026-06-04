@@ -245,8 +245,8 @@ class VideoController extends Controller
         $videos = $videos->paginate(6);
 
         return view('welcome', compact(
-                                    'videos',
-                                    'search'
+            'videos',
+            'search'
         ));
     }
 }

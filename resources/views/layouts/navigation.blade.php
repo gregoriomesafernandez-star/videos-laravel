@@ -5,47 +5,8 @@
 
             <div class="flex items-center">
                 <!-- Logo -->
-                <div id="logo" class="flex-1 mb-2">
-					<div class="
-                        group
-                        w-64
-                        pt-1
-                        pb-1.5
-                        mt-2
-                        text-center
-                        text-white
-                        tracking-wider
-                        cursor-pointer
-                        overflow-hidden
-                        transition
-                        duration-300
-                        rounded-md
-                        bg-blue-700
-                        hover:text-black
-                        hover:bg-gray-300
-                        
-                    ">
-
-						<span class="
-                            block
-                            float-left
-                            text-3xl
-                            ml-8
-                            mt-1
-                            animate-spin-slow
-                            group-hover:animate-spin-and-down
-                        ">
-							▷
-						</span>
-
-						<h3 class="bebas tracking-wider block float-right text-2xl mt-1.5 mr-6
-								   transition duration-100 group-hover:animate-spin-right
-                        ">VIDEOS
-                            <span class="trebuchet">LARAVEL</span>
-						</h3>
-					</div>
-				</div>
-
+                <x-application-logo/>
+            
                 <!-- Navigation Links -->
                 <div class="max-[780px]:hidden flex md:gap-4 lg:gap-10 ms-10">
                     
@@ -124,16 +85,10 @@
             @else
                 
                 <!-- Usuario NO logueado -->
-
-                    <a href="{{ route('login') }}" 
-                       class="text-lg font-medium border border-gray-500 rounded-sm 
-                              px-5 py-1  mr-5 text-gray-500 
-                              transition duration-350 ease-in-out 
-                              hover:text-white hover:border-white hover:bg-gray-400
-                        ">
-
-                       <i class="fa-solid fa-user"></i> Login
-                    </a>
+                <x-secondary-button href="{{ route('login') }}" > 
+                         <i class="fa-solid fa-user"></i> 
+                       Login
+                </x-secondary-button>
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" 
@@ -141,6 +96,7 @@
                         Registrar
                     </a>
                 @endif
+
             @endauth
 
     </div>
@@ -160,7 +116,7 @@
                                                     ">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('dashboard')">
-                {{ __('Inicio') }}
+                Inicio
             </x-responsive-nav-link>
         </div>
 
@@ -229,11 +185,11 @@
                 </form>
 
                 <x-responsive-nav-link :href="route('login')">
-                    {{ __('Login') }}
+                    Login
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('register')">
-                    {{ __('Registro') }}
+                    Registro
                 </x-responsive-nav-link>
   
             @endauth

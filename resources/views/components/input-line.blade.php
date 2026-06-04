@@ -10,7 +10,7 @@
     >
 
     <!-- línea base -->
-    <span class="absolute left-0 bottom-0 w-full h-[1px] bg-blue-300"></span>
+    <span class="absolute left-0 bottom-0 w-full h-[1px] bg-blue-400"></span>
 
     <!-- línea animada -->
     <span class="absolute left-1/2 bottom-0 w-0 h-[2px] bg-blue-600 
