@@ -12,7 +12,7 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" class="mt-8" value="Email" />
+            <x-input-label for="email" class="mt-8" value="Correo electrónico" />
             <x-input-line id="email" class="block w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
