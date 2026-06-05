@@ -1,8 +1,8 @@
 <x-app-layout>
 
     <div class="">
-        <div class="flex gap-8 w-full">
-            <div id="details" class="w-[73%]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[2fr_1fr] gap-6 items-start">
+            <div id="details" class="order-1 lg:col-span-2 xl:col-span-1">
 
                 <!-- VIDEO -->
                 <div class="w-full aspect-video">
@@ -43,21 +43,25 @@
                     
                 </div>
                 
+                
+            </div>
+
+            <div class="order-2 xl:col-start-1 xl:row-start-2">
                 <!-- Comentarios -->
                 @include('video.comments')
             </div>
 
-            <div id="list_videos" class="w-[27%]">
+            <div id="list_videos" class="order-3 xl:order-2 xl:col-start-2 xl:row-start-1 xl:row-span-2">
                 <div class="mb-6">
                     <span class="font-bold text-gray-600 text-2xl tracking-wide">Videos relacionados</span>
                 </div>
                 
-                <div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-2">
                     @foreach($videos as $v)
-                        <div class="flex gap-3 mb-4 cursor-pointer hover:bg-gray-400 p-2 rounded-lg transition duration-250">
+                        <div class="flex flex-col lg:flex-row gap-3 mb-4 cursor-pointer hover:bg-gray-400 p-2 rounded-lg transition duration-250">
 
                             <!-- Imagen -->
-                            <a href="{{ route('video.detail', $v->id) }}" class="w-[210px] shrink-0">
+                            <a href="{{ route('video.detail', $v->id) }}" class="w-full lg:w-[170px] shrink-0">
                                 <div class="w-full aspect-video bg-gray-300 rounded-lg overflow-hidden">
                                     @if($v->image)
                                         <img 
