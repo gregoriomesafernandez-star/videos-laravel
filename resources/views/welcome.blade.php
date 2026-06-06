@@ -9,16 +9,18 @@
 
 
     <!-- Banner -->
-    <div id="banner" class="
-                        h-28 w-11/12 mx-auto border-2 overflow-hidden shadow-sm
-                        m-5 mt-2 bg-no-repeat bg-banner animate-bg-banner
-        ">
-        <h1 class="
-                text-banner block text-white text-4xl font-normal tracking-wider
-                m-7 mx-auto text-center animate-text-banner xs:text-2xl xs:mt-8
-            ">DESARROLLO WEB GREGORIO MESA FDEZ
-        </h1>
-    </div>
+    @if(!isset($search))
+        <div id="banner" class="
+                    h-28 w-11/12 mx-auto border-2 overflow-hidden shadow-sm
+                    m-5 mt-2 bg-no-repeat bg-banner animate-bg-banner
+            ">
+            <h1 class="
+                    text-banner block text-white text-4xl font-normal tracking-wider
+                    m-7 mx-auto text-center animate-text-banner xs:text-2xl xs:mt-8
+                ">VIDEOS Laravela0
+            </h1>
+        </div>
+    @endif
 
     @if($videos->isNotEmpty())
         
@@ -56,7 +58,7 @@
             @foreach($videos as $video)
 
                 <!-- Tarjeta video -->
-                <div onclick="window.location='{{ route('video.detail', $video->id) }}'" class="
+                <div x-data="{ open: false }" onclick="window.location='{{ route('video.detail', $video->id) }}'" class="
                                         group video-card bg-gradient-to-b from-blue-500 to-blue-200 
                                         cursor-pointer hover:scale-105 transition duration-300 hover:shadow-xl 
                                         p-0 ease-in-out shadow-md bg-blue-200 rounded-xl overflow-hidden flex flex-col
@@ -66,10 +68,10 @@
                     <div class="video-thumbnail overflow-hidden w-full">
 
                         @if($video->image)
-                        <img src="{{ url('image/' . $video->image) }}" alt="{{ $video->title }}"
-                            class="object-cover transition duration-500 ease-in-out group-hover:scale-110">
+                            <img src="{{ url('image/' . $video->image) }}" alt="{{ $video->title }}"
+                                class="object-cover transition duration-500 ease-in-out group-hover:scale-110">
                         @else
-                        <div class="no-image-placeholder flex items-center justify-center">Sin imagen</div>
+                            <div class="no-image-placeholder flex items-center justify-center">Sin imagen</div>
                         @endif
 
                     </div>
@@ -102,93 +104,86 @@
                     <div class="flex gap-2 mt-2 mb-4 flex-wrap">
 
                         @auth
-                        @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
+                            @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
 
-                        <!-- BOTÓN Editar-->
-                        <a href="{{ route('edit.video', $video->id) }}" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 
-                                                        rounded-sm shadow hover:shadow-lg transition duration-200 
-                                                        transform hover:scale-105">
-                            Editar
-                        </a>
+                            <!-- BOTÓN Editar-->
+                            <a href="{{ route('edit.video', $video->id) }}" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 
+                                                            rounded-sm shadow hover:shadow-lg transition duration-200 
+                                                            transform hover:scale-105">
+                                Editar
+                            </a>
 
+                            <div >
 
-                        <div class="" x-data="{ open: false }">
+                                <!-- BOTÓN Eliminar-->
+                                <button @click.stop="open = true" @click="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
+                                                                shadow transition duration-200 cursor-pointer hover:scale-105">
+                                    Eliminar
+                                </button>
 
-                            <!-- BOTÓN Eliminar-->
-                            <button @click.stop="open = true" @click="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
-                                                            shadow transition duration-200 cursor-pointer hover:scale-105">
-                                Eliminar
-                            </button>
+                                
+                            </div>
+                            
+                            @endif
+                        @endauth
+                    </div>
 
-                            <!-- OVERLAY -->
-                            <div x-show="open" x-cloak
-                                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <template x-teleport="body">
+                        <div
+                            x-show="open"
+                            x-cloak
+                            class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+                            @click.self="open = false"
+                        >
+                            <div
+                                class="bg-white rounded-xl shadow-xl p-6 w-[90%] max-w-md"
+                                @click.stop
+                            >
+                                <h2 class="text-xl font-bold mb-4">¿Estás seguro?</h2>
 
-                                <!-- MODAL -->
-                                <div @click.away="open = false" class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+                                <p class="mb-4">¿Seguro que quieres borrar este vídeo?</p>
 
-                                    <!-- HEADER -->
-                                    <h2 class="text-lg font-semibold mb-4">
-                                        ¿Estás seguro?
-                                    </h2>
+                                <p class="text-gray-400 break-words mb-6">{{ $video->title }}</p>
 
-                                    <!-- BODY -->
-                                    <p class="text-gray-600 mb-4">
-                                        ¿Seguro que quieres borrar este video?
+                                <div class="flex justify-end gap-4">
+                                    <button
+                                        type="button"
+                                        @click.stop="open = false"
+                                    >
+                                        Cancelar
+                                    </button>
 
-                                    </p>
+                                    <form method="GET" action="{{ route('delete.video', $video->id) }}">
+                                        @csrf
 
-                                    <p class="text-gray-400 break-words">{{ $video->title }}</p>
-
-                                    <p class="text-sm text-red-500 mt-3 mb-6">
-                                        Si lo borras, no podrás recuperarlo.
-                                    </p>
-
-                                    <!-- FOOTER -->
-                                    <div class="flex justify-end gap-3">
-                                        <button @click="open = false" class="px-4 py-2 text-gray-600 hover:text-black">
-                                            Cancelar
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+                                            Eliminar
                                         </button>
-
-                                        <form method="POST" action="">
-                                            @csrf
-
-                                            <a href="{{ route('delete.video', $video->id)}}" type="button"
-                                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-                                                Eliminar
-                                            </a>
-                                        </form>
-                                    </div>
-
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        @endif
-                        @endauth
-                    </div>
+                    </template>
                 </div>
             @endforeach
 
         </div>
 
         <!-- Paginación -->
-        @if(isset($search))
-            <div class="paginator mt-10 flex justify-center">
+        <div class="paginator mt-10 flex justify-center">
+            @if(isset($search))
                 {{ $videos->appends(request()->query())->links() }}
-            </div>
-        @else
-            <div class="paginator mt-10 flex justify-center">
+            @else
                 {{ $videos->links('pagination::tailwind') }}
-            </div>
-        @endif
-
+            @endif
+        </div>
 
     @else
 
         <p class="text-center text-lg font-bold text-gray-500 mt-6">
-            No hay resultados para tu búsqueda.
+            {{ isset($search) ? 'No hay resultados para tu búsqueda.' : 'No hay vídeos para mostrar.' }}
         </p>
-
+        
     @endif
 
 </x-app-layout>
