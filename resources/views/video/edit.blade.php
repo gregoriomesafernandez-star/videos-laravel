@@ -18,24 +18,24 @@
                 <div class="mt-4">
                     <label for="title" class="block text-sm font-medium text-gray-700 mt-2 mb-2">Título</label>
                     <input type="text" id="title" name="title" value="{{ $video->title }}"
-                           class="probando w-full px-5 py-3.5 rounded border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
+                           class="probando w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
                 <div class="mt-4">
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
                     <textarea id="description" name="description" rows="4"
-                              class="w-full px-5 py-3.5 rounded border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">{{ $video->description }}</textarea>
+                              class="w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">{{ $video->description }}</textarea>
                 </div>
 
                 <div class="mt-4">
                     <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Miniatura</label>
                     @if($video->image)
-                        <img class="w-52 h-52 object-cover mx-auto w-full mb-4 rounded" src="{{ url('image/' . $video->image) }}" alt="{{ $video->title }}">
+                        <img class="h-52 object-cover mx-auto w-full mb-4 rounded" src="{{ url('image/' . $video->image) }}" alt="{{ $video->title }}">
                     @else
                         <div class="no-image-placeholder">Sin imagen</div>
                     @endif
                     <input type="file" id="image" name="image" 
-                           class="w-full px-5 py-3.5 rounded border
+                           class="w-full px-5 py-3.5 border
                                   border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
@@ -49,7 +49,7 @@
                         </video>
                     </div>
                     <input type="file" id="video" name="video" 
-                           class="w-full px-5 py-3.5 rounded border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
+                           class="w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
                 <button type="submit" style="padding: 5px 20px;" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer mx-4">                  
