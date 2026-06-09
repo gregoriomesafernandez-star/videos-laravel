@@ -17,7 +17,7 @@
             <h1 class="
                     text-banner block text-white text-4xl font-normal tracking-wider
                     m-7 mx-auto text-center animate-text-banner xs:text-2xl xs:mt-8
-                ">VIDEOS Laravela0
+                ">VIDEOS Laravel
             </h1>
         </div>
     @endif

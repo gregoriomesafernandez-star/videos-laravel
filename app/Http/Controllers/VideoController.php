@@ -224,8 +224,8 @@ class VideoController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        $order = $request->input('order', 'latest');
+        $search = $request->query('search');
+        $order = $request->query('order', 'latest');
 
         $videos = Video::query();
 
