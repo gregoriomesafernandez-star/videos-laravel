@@ -12,7 +12,7 @@
             </div>
             
 
-            <h1 class="w-full text-3xl border-b font-semibold text-gray-800 mt-6 mb-6 pb-4">
+            <h1 class="w-full text-3xl border-b font-semibold text-gray-800 mt-6 mb-6 px-4 md:px-0 pb-4">
             {{ $video->title }}
             </h1>
 

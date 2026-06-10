@@ -20,9 +20,7 @@ class Comment extends Model
         'video_id',
     ];
 
-    /**
-     * Relaciones
-     */
+    // ====================== RELACIONES ======================
 
     // Un comentario pertenece a un usuario
     public function user()

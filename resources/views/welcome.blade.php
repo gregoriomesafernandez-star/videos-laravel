@@ -101,7 +101,7 @@
                     </div>
 
                     <!-- Botones Editar y Eliminar -->
-                    <div class="flex gap-2 mt-2 mb-4 flex-wrap">
+                    <div class="flex gap-2 mx-auto mt-2 mb-4 flex-wrap">
 
                         @auth
                             @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
@@ -116,12 +116,11 @@
                             <div >
 
                                 <!-- BOTÓN Eliminar-->
-                                <button @click.stop="open = true" @click="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
+                                <button @click.stop="open = true" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm 
                                                                 shadow transition duration-200 cursor-pointer hover:scale-105">
                                     Eliminar
                                 </button>
 
-                                
                             </div>
                             
                             @endif

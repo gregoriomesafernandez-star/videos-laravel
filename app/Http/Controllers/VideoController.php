@@ -215,10 +215,10 @@ class VideoController extends Controller
             $video->video_path = $videoPath;
         }
 
-        $video->update();
+        $video->save();
 
         return redirect()
-                ->route('welcome.index')
+                ->route('home')
                 ->with('message', 'Vídeo actualizado correctamente');
     }
 

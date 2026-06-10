@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Models;                    // ← Namespace moderno
-
+namespace App\Models;                    
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,11 +23,13 @@ class Video extends Model
     // ====================== RELACIONES ======================
 
 
+    // Un video tiene muchos comentarios
     public function comments()
     {
         return $this->hasMany(Comment::class)->orderBy('id', 'desc');       
     }
 
+    // Un video pertenece a un usuario
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

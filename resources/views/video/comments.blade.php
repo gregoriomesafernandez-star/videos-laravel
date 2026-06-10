@@ -1,44 +1,48 @@
-<h4 id="comentarios" class="text-lg font-semibold mb3-3 mt-5">Comentarios</h4>
+<h4 id="comentarios" class="text-lg font-semibold mb-3 {{ $video->comments->count() > 0 ? 'mt-5' : 'mt-0' }}">
+    Comentarios
+</h4>
 
 <hr class="mb-6" />
 
 <!-- Mensaje de éxito -->
 @if (session('message'))
-<div class="bg-green-100 border border-green-400 text-green-700 px-5 py-4 rounded-2xl mb-8">
-    {{ session('message') }}
-</div>
+    <div class="bg-green-100 border border-green-400 text-green-700 px-5 py-4 rounded-2xl mb-8">
+        {{ session('message') }}
+    </div>
 @endif
 
 @auth
-<form method="POST" action="{{ route('comment') }}" onsubmit="saveTime()" class="w-full mb-7">
-    @csrf
+    <form method="POST" action="{{ route('comment') }}" onsubmit="saveTime()" class="w-full mb-7">
+        @csrf
 
-    <input type="hidden" name="video_id" value="{{ $video->id }}" required />
-    <input type="hidden" name="video_time" id="video_time">
-    <div class="relative w-full mt-6 mb-2">
+        <input type="hidden" name="video_id" value="{{ $video->id }}" required />
 
-        <textarea name="body" placeholder="Añade un comentario..."
-            class="peer w-full bg-white h-10 border-0 outline-none focus:ring-0  text-gray-700 overflow-hidden"></textarea>
+        <input type="hidden" name="video_time" id="video_time">
+        
+        <div class="relative w-full mt-6 mb-2">
 
-        <span class="absolute left-0 bottom-0 w-full h-[1px] bg-blue-300"></span>
+            <textarea name="body" placeholder="Añade un comentario..."
+                class="peer w-full bg-white h-10 border-0 outline-none focus:ring-0  text-gray-700 overflow-hidden"></textarea>
 
-        <span class="absolute left-1/2 bottom-0 w-0 h-[2px] bg-blue-600 
-                        transition-all duration-300 ease-out 
-                        peer-focus:w-full peer-focus:left-0">
-        </span>
+            <span class="absolute left-0 bottom-0 w-full h-[1px] bg-blue-300"></span>
 
-    </div>
+            <span class="absolute left-1/2 bottom-0 w-0 h-[2px] bg-blue-600 
+                            transition-all duration-300 ease-out 
+                            peer-focus:w-full peer-focus:left-0">
+            </span>
 
-    <div class="flex justify-end">
-        <input type="submit" value="Comentar"
-            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer mx-4" />
-    </div>
-</form>
+        </div>
+
+        <div class="flex justify-end">
+            <input type="submit" value="Comentar"
+                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer mx-4" />
+        </div>
+    </form>
 @endauth
 
 
 
-@if(isset($video->comments))
+@if($video->comments->count() > 0)
 <div id="comment_list">
 
     @foreach ($video->comments as $comment)

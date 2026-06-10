@@ -1,20 +1,6 @@
-
-
 .formulario_create_div{
     padding: 25px;
     border-radius: 20px;
-}
-
-.btn-enviar{
-    margin-top: 15px;
-    background-color: #198754;
-    color: white;
-}
-
-.btn-enviar:hover{
-    margin-top: 15px;
-    background-color: #4ea17a;
-    color: white;
 }
 
 .message-success{
@@ -38,74 +24,14 @@
     border-radius: 18px;
 }
 
-
-/* Botones estilo Bootstrap */
-.btn {
-    display: inline-block;
-    padding: 15px 28px;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Tamaños */
-.btn-sm {
-    padding: 6px 12px;
-    font-size: 16px;
-}
-
-.btn-lg {
-    padding: 14px 28px;
-    font-size: 18px;
-}
-
-/* Outline (solo borde) */
-.btn-outline-primary {
-    border: 2px solid #0d6efd;
-    color: #0d6efd;
-    background: transparent;
-}
-.btn-outline-primary:hover {
-    background-color: #0d6efd;
-    color: white;
-}
-
-.paginator {
-    margin-top: 20px;
-    padding-bottom: 30px;
-}
-
-
-/* VIDEOS LIST */
-.videos-grid {
-    max-width: 900px;
-    margin: 30px auto;
-}
-
+/* Tarjetas de vídeo */
 .video-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    background: #fafdff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-
-    padding: 14px 35px;
-    margin-bottom: 18px;
+    min-height: 100%;
 }
 
 .video-thumbnail {
-    width: 280px;
     height: 200px;
     flex-shrink: 0;
-    border-radius: 4px;
-    overflow: hidden;
     background: #eee;
 }
 
@@ -114,34 +40,14 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 4px;
 }
 
+/* Placeholder sin imagen */
 .no-image-placeholder {
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 200px;
     color: #888;
     font-size: 14px;
-}
-
-.video-info {
-    flex: 1;
-}
-
-.video-title {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.video-description {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
 }
 
 [x-cloak] {

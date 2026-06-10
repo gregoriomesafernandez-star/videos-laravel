@@ -1,8 +1,9 @@
 <x-app-layout>
-
     <div class="tam_form rounded max-w-xl mx-auto mb-8 mt-8 px-4">
-        <div  class="formulario_create_div bg-white rounded-3xl shadow-lg ">   <!-- más padding interno -->
-            <h2 class="font-semibold text-xl text-gray-800">Editar video</h2><hr/>
+        <div  class="formulario_create_div shadow-box  bg-white rounded-3xl ">
+            <h2 class="font-semibold text-xl text-gray-800">Editar video</h2>
+            <hr/>
+
             @if ($errors->any())
                 <div style="background-color: #f6dede; padding: 16px 20px; margin-bottom: 24px; border-radius: 8px;">
                     <ul style="list-style-type: disc; padding-left: 20px; margin: 0;">
@@ -12,21 +13,23 @@
                     </ul>
                 </div>
             @endif
+
             <form action="{{ route('update.video', $video->id) }}" method="POST" enctype="multipart/form-data" class="space-y-7">
                 @csrf
 
+                <!-- title -->
                 <div class="mt-4">
                     <label for="title" class="block text-sm font-medium text-gray-700 mt-2 mb-2">Título</label>
-                    <input type="text" id="title" name="title" value="{{ $video->title }}"
-                           class="probando w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
+                    <x-input-line type="text" id="title" name="title" value="{{ $video->title }}" />
                 </div>
 
+                <!-- description -->
                 <div class="mt-4">
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
-                    <textarea id="description" name="description" rows="4"
-                              class="w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">{{ $video->description }}</textarea>
+                    <x-textarea-line id="description" name="description" >{{ $video->description }}</x-textarea-line>
                 </div>
 
+                <!-- image -->
                 <div class="mt-4">
                     <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Miniatura</label>
                     @if($video->image)
@@ -39,22 +42,25 @@
                                   border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
+                <!-- VIDEO -->
                 <div class="mt-4">
                     <label for="video" class="block text-sm font-medium text-gray-700 mb-2">Archivo de video</label>
-                    <!-- VIDEO -->
+                    
                     <div class="mb-4 w-full aspect-video">
                         <video controls class="w-full h-full mx-auto object-cover rounded-xl shadow-lg">
                             <source src="{{ route('show.video', ['filename' => $video->video_path]) }}">
                             Tu navegador no es compatible con HTML5
                         </video>
                     </div>
+
                     <input type="file" id="video" name="video" 
                            class="w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
-                <button type="submit" style="padding: 5px 20px;" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer mx-4">                  
+
+                <x-primary-button type="submit" >                  
                         Editar
-                </button>
+                </x-primary-button>
 
             </form>
         </div>

@@ -28,7 +28,7 @@
         </div>
 
         <x-primary-button class="mt-4">
-            Inicia Sesión
+            Iniciar Sesión
         </x-primary-button>
 
         <div class="flex items-center mt-2 mx-auto">
