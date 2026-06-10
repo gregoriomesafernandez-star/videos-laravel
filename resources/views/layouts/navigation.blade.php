@@ -134,6 +134,7 @@
 
             @auth
             <div class="mt-6">
+
                 <!-- BUSCAR -->
                 <form action="{{ route('search.video')}}" method="GET" role="search" class="min-[780px]:hidden flex items-center mb-2 ms-4 gap-2">
 
@@ -149,6 +150,12 @@
                     </button>
                 </form>
 
+                <!-- Botón crear vídeo-->
+                <x-responsive-nav-link :href="route('create.video')">
+                    Subir Vídeo
+                </x-responsive-nav-link>
+
+                <!-- Botón mis datos-->
                 <x-responsive-nav-link :href="route('profile.edit')">
                     Mis datos
                 </x-responsive-nav-link>
