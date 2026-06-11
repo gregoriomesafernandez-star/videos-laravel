@@ -66,7 +66,7 @@
                 </div>
 
                 <!-- Botones Editar y Eliminar -->
-                <div class="flex gap-2 mt-2 mb-4 flex-wrap">
+                <div class="flex gap-2 mt-2 mb-4 mx-auto flex-wrap">
 
                     @auth
                         @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
