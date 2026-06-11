@@ -54,7 +54,7 @@
                 <span class="font-semibold text-black-300 me-2">
 
                     <a class="hover:text-blue-800"
-                        href="{{ route('channel.user', $video->user->id )}}">
+                        href="{{ route('channel.user', $comment->user->id )}}">
 
                         {{$comment->user->name}}
                     </a>
