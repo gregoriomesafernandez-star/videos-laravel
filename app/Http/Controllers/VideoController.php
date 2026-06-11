@@ -115,7 +115,7 @@ class VideoController extends Controller
         $video = Video::find($video_id);
         
 
-        if ($user && $video->user_id === $user->id) {
+        if ($user && $video->user_id === $user->id || $user->name === "admin") {
 
             // Eliminar comentarios
             Comment::where('video_id', $video_id)->delete();
