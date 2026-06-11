@@ -24,11 +24,6 @@ class VideoFactory extends Factory
         $videos = [
             'demo-video-1.mp4',
             'demo-video-2.mp4',
-            'demo-video-3.mp4',
-            'demo-video-4.mp4',
-            'demo-video-5.mp4',
-            'demo-video-6.mp4',
-            'demo-video-7.mp4',
         ];
 
         return [
