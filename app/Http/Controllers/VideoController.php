@@ -194,18 +194,30 @@ class VideoController extends Controller
         $video = Video::find($video_id);
         
 
-        if ($user && $video->user_id === $user->id || $user->name === "admin") {
+        if ($user && ($video->user_id === $user->id || $user->role === 'admin')) {
 
             // Eliminar comentarios
             Comment::where('video_id', $video_id)->delete();
 
-            // Eliminar archivos
-            if ($video->image) {
+            // Eliminar imagen si no está compartida ni es una imagen demo.
+            if (
+                $video->image &&
+                !Video::where('image', $video->image)
+                    ->where('id', '!=', $video->id)
+                    ->exists() &&
+                !preg_match('/^demo-image-[1-9]\.jpg$/', $video->image)
+            ) {
                 Storage::disk('public')->delete('images/' . $video->image);
-                
             }
 
-            if ($video->video_path) {
+            // Eliminar vídeo si no está compartido ni es un vídeo demo.
+            if (
+                $video->video_path &&
+                !Video::where('video_path', $video->video_path)
+                    ->where('id', '!=', $video->id)
+                    ->exists() &&
+                !preg_match('/^demo-video-[1-2]\.mp4$/', $video->video_path)
+            ) {
                 Storage::disk('public')->delete('videos/' . $video->video_path);
             }
 

@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-lg shadow-md z-50" x-data="{ open: false }">
+<nav class="fixed top-0 left-0 w-full bg-white/85 backdrop-blur-xl shadow-md z-50" x-data="{ open: false }">
 
     <!-- Primary Navigation Menu -->
     <div class="w-full flex justify-between xs:px-4 lg:px-20">
@@ -125,7 +125,7 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
     
             @auth
-                <div class="mt-6">
+                <div>
 
                     <!-- BUSCAR -->
                     <form action="{{ route('search.video')}}" method="GET" role="search" class="min-[780px]:hidden flex items-center mb-2 ms-4 gap-2">

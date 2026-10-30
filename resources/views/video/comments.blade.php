@@ -43,91 +43,91 @@
 
 
 @if($video->comments->count() > 0)
-<div id="comment_list">
+    <div id="comment_list">
 
-    @foreach ($video->comments as $comment)
+        @foreach ($video->comments as $comment)
 
-    <div class="bg-white w-full border border-gray-200 rounded-sm shadow-md overflow-hidden mb-7">
-        <div class="bg-blue-200 border-b border-gray-200 px-5 py-3">
-            <h2 class="text-lg font-semibold">
+        <div class="bg-white w-full border border-gray-200 rounded-sm shadow-md overflow-hidden mb-7">
+            <div class="bg-blue-200 border-b border-gray-200 px-5 py-3">
+                <h2 class="text-lg font-semibold">
 
-                <span class="font-semibold text-black-300 me-2">
+                    <span class="font-semibold text-black-300 me-2">
 
-                    <a class="hover:text-blue-800"
-                        href="{{ route('channel.user', $comment->user->id )}}">
+                        <a class="hover:text-blue-800"
+                            href="{{ route('channel.user', $comment->user->id )}}">
 
-                        {{$comment->user->name}}
-                    </a>
+                            {{$comment->user->name}}
+                        </a>
 
-                    <i class="fa-solid ms-1 fa-circle-check text-green-500"></i>
-                </span>
+                        <i class="fa-solid ms-1 fa-circle-check text-green-500"></i>
+                    </span>
 
 
-                <span class="text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
-            </h2>
-        </div>
+                    <span class="text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
+                </h2>
+            </div>
 
-        <div class="px-5 py-4 text-gray-700">
-            {{ $comment->body }}
+            <div class="px-5 py-4 text-gray-700">
+                {{ $comment->body }}
 
-            @if(auth()->id() === $comment->user_id || auth()->id() === $video->user_id)
-            <div class="flex justify-end">
-                <div x-data="{ open: false }">
+                @if(auth()->id() === $comment->user_id || auth()->id() === $video->user_id)
+                <div class="flex justify-end">
+                    <div x-data="{ open: false }">
 
-                    <!-- BOTÓN -->
-                    <button @click="open = true"
-                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer">
-                        Eliminar
-                    </button>
+                        <!-- BOTÓN -->
+                        <button @click="open = true"
+                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm shadow transition cursor-pointer">
+                            Eliminar
+                        </button>
 
-                    <!-- OVERLAY -->
-                    <div x-show="open" x-cloak
-                        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <!-- OVERLAY -->
+                        <div x-show="open" x-cloak
+                            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 
-                        <!-- MODAL -->
-                        <div @click.away="open = false" class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+                            <!-- MODAL -->
+                            <div @click.away="open = false" class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
 
-                            <!-- HEADER -->
-                            <h2 class="text-lg font-semibold mb-4">
-                                ¿Estás seguro?
-                            </h2>
+                                <!-- HEADER -->
+                                <h2 class="text-lg font-semibold mb-4">
+                                    ¿Estás seguro?
+                                </h2>
 
-                            <!-- BODY -->
-                            <p class="text-gray-600 mb-4">
-                                ¿Seguro que quieres borrar este comentario?
+                                <!-- BODY -->
+                                <p class="text-gray-600 mb-4">
+                                    ¿Seguro que quieres borrar este comentario?
 
-                            </p>
+                                </p>
 
-                            <p class="text-gray-400 break-words">{{ $comment->body }}</p>
+                                <p class="text-gray-400 break-words">{{ $comment->body }}</p>
 
-                            <p class="text-sm text-red-500 mt-3 mb-6">
-                                Si lo borras, no podrás recuperarlo.
-                            </p>
+                                <p class="text-sm text-red-500 mt-3 mb-6">
+                                    Si lo borras, no podrás recuperarlo.
+                                </p>
 
-                            <!-- FOOTER -->
-                            <div class="flex justify-end gap-3">
-                                <button @click="open = false" class="px-4 py-2 text-gray-600 hover:text-black">
-                                    Cancelar
-                                </button>
+                                <!-- FOOTER -->
+                                <div class="flex justify-end gap-3">
+                                    <button @click="open = false" class="px-4 py-2 text-gray-600 hover:text-black">
+                                        Cancelar
+                                    </button>
 
-                                <form method="POST" action="">
-                                    @csrf
+                                    <form method="POST" action="">
+                                        @csrf
 
-                                    <a href="{{ route('delete.comment', $comment->id)}}" type="button"
-                                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-                                        Eliminar
-                                    </a>
-                                </form>
+                                        <a href="{{ route('delete.comment', $comment->id)}}" type="button"
+                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                                            Eliminar
+                                        </a>
+                                    </form>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
-            @endif
         </div>
-    </div>
-    @endforeach
+        @endforeach
 
-</div>
+    </div>
 @endif

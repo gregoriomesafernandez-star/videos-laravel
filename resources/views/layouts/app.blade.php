@@ -41,7 +41,7 @@
         <!-- INICIO TARJETAS -->
         <div id="cards" class="w-full max-w-3xl mx-auto flex justify-center gap-4 px-4">
 
-            <div class="card group">
+            <div class="card group rounded-md">
 
                 <span class="card-icon">
                     M
@@ -57,7 +57,7 @@
 
             </div>
 
-            <div class="card group">
+            <div class="card group rounded-md">
 
                 <span class="card-icon">
                     ]

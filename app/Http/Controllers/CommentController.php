@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+
    public function store(Request $request){
 
         $comment = new Comment();
@@ -41,5 +42,4 @@ class CommentController extends Controller
                          ->withFragment('comentarios');
    }
 
-   
 }

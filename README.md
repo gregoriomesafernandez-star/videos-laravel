@@ -24,6 +24,7 @@ A video sharing platform built with Laravel where users can register, upload vid
 
 - PHP
 - Laravel
+- Laravel Breeze (Authentication Starter Kit)
 - Eloquent ORM
 - MySQL
 - Blade
