@@ -106,8 +106,13 @@ The project includes sample users, videos and comments for testing purposes.
 
 ## Demo Users
 
-You can use the following demo account:
+You can use the following demo accounts:
 
+**Administrator account:**
+- Email: admin@test.com
+- Password: 12345678
+
+**Regular user account:**
 - Email: user@test.com
 - Password: 12345678
 
@@ -115,7 +120,7 @@ You can use the following demo account:
 
 ## Usage
 
-You can register a new user or use the generated demo data to explore the application:
+You can register a new user to explore the application:
 
 - Upload videos
 - Add comments
