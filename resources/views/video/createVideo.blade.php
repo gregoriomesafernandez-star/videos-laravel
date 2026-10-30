@@ -39,10 +39,17 @@
                            class="w-full px-5 py-3.5 rounded border border-gray-300 focus:outline-none focus:border-blue-500">
                 </div>
 
-                <x-primary-button type="submit">                  
-                        Guardar
-                </x-primary-button>
+                <div class="flex">
+                    
+                    <x-primary-button type="submit">                  
+                            Guardar
+                    </x-primary-button>
 
+                    <x-secondary-button class="ms-4" href="{{ url()->previous() }}">
+                        <span>←</span>
+                        <span>Volver</span>
+                    </x-secondary-button>
+                </div>
             </form>
         </div>
     </div>

@@ -50,8 +50,8 @@
             <a class="form-link" href="{{ route('login') }}">
                 ¿Ya estás registrado?
             </a>
-            <x-secondary-button href="{{ route('home') }}" class="ms-4">
-                    ← Volver
+            <x-secondary-button class="ms-4" href="{{ url()->previous() }}">
+                ← Volver
             </x-secondary-button>
             
         </div>

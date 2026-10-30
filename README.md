@@ -55,24 +55,45 @@ DB_USERNAME=username
 DB_PASSWORD=password
 ```
 
+**Important:** Before running the migrations, you must manually create the database specified in `DB_DATABASE` (for example, using phpMyAdmin).
+
 Generate the application key:
 
 ```bash
 php artisan key:generate
 ```
 
-Run database setup:
+Once the database has been created and the `.env` file configured, run:
 
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-Start the development server:
+**Warning:** `migrate:fresh` will drop all existing tables before running the migrations. Only use this command with a new or test database.
+
+Create the storage symbolic link:
+
+```bash
+php artisan storage:link
+```
+
+### Start the development server
+
+Open two separate terminals in the project directory:
+
+**Terminal 1 – Laravel server:**
 
 ```bash
 php artisan serve
+```
+
+**Terminal 2 – Vite development server (CSS and JavaScript compiler):**
+
+```bash
 npm run dev
 ```
+
+Keep both terminals running while using the application.
 
 ---
 
@@ -84,10 +105,11 @@ The project includes sample users, videos and comments for testing purposes.
 
 ## Demo Users
 
-You can use the following demo accounts:
+You can use the following demo account:
 
-- Email: user@test.com  
-- Password: 12345678  
+- Email: user@test.com
+- Password: 12345678
+
 ---
 
 ## Usage
@@ -106,5 +128,3 @@ You can register a new user or use the generated demo data to explore the applic
 ## Author
 
 Gregorio Mesa
-
----

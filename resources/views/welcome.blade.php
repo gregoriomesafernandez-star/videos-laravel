@@ -11,11 +11,11 @@
     <!-- Banner -->
     @if(!isset($search))
         <div id="banner" class="
-                    h-28 w-11/12 mx-auto border-2 overflow-hidden shadow-sm
+                    h-28 w-11/12 mx-auto rounded-xl border-2 overflow-hidden shadow-lg
                     m-5 mt-2 bg-no-repeat bg-banner animate-bg-banner
             ">
             <h1 class="
-                    text-banner block text-white text-4xl font-normal tracking-wider
+                    text-banner block text-white text-6xl font-normal tracking-wider
                     m-7 mx-auto text-center animate-text-banner xs:text-2xl xs:mt-8
                 ">VIDEOS Laravel
             </h1>
@@ -104,10 +104,10 @@
                     <div class="flex gap-2 mx-auto mt-2 mb-4 flex-wrap">
 
                         @auth
-                            @if(auth()->id() === $video->user_id || auth()->user()->name === "admin")
+                            @if(auth()->id() === $video->user_id || auth()->user()->role === "admin")
 
                             <!-- BOTÓN Editar-->
-                            <a href="{{ route('edit.video', $video->id) }}" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 
+                            <a href="{{ route('edit.video', $video->id) }}?return_to={{ urlencode(request()->getRequestUri()) }}" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 
                                                             rounded-sm shadow hover:shadow-lg transition duration-200 
                                                             transform hover:scale-105">
                                 Editar

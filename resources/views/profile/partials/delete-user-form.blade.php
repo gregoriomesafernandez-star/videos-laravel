@@ -9,10 +9,20 @@
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >Eliminar cuenta</x-danger-button>
+    <div class="flex">
+                    
+        <x-danger-button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        >Eliminar cuenta
+        
+        </x-danger-button>
+
+        <x-secondary-button class="ms-4" href="{{ url()->previous() }}">
+            <span>←</span>
+            <span>Volver</span>
+        </x-secondary-button>
+    </div>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">

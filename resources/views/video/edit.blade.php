@@ -17,6 +17,8 @@
             <form action="{{ route('update.video', $video->id) }}" method="POST" enctype="multipart/form-data" class="space-y-7">
                 @csrf
 
+                <input type="hidden" name="return_to" value="{{ request('return_to') }}">
+                
                 <!-- title -->
                 <div class="mt-4">
                     <label for="title" class="block text-sm font-medium text-gray-700 mt-2 mb-2">Título</label>
@@ -57,10 +59,17 @@
                            class="w-full px-5 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
                 </div>
 
-
-                <x-primary-button type="submit" >                  
+                <div class="flex">
+                    <x-primary-button type="submit" >                  
                         Editar
-                </x-primary-button>
+                    </x-primary-button>
+
+                    <x-secondary-button class="ms-4" href="{{ url()->previous() }}">
+                        <span>←</span>
+                        <span>Volver</span>
+                    </x-secondary-button>
+                </div>
+                
 
             </form>
         </div>

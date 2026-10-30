@@ -76,17 +76,6 @@ class VideoController extends Controller
         ]);
     }
 
-    public function showImg(string $filename)
-    {
-        $path = storage_path('app/public/images/' . $filename);
-
-        if (!file_exists($path)) {
-            abort(404);
-        }
-
-        return response()->file($path);
-    }
-
     public function videoDetail(int $video_id)
     {
         $video = Video::find($video_id);
@@ -98,15 +87,105 @@ class VideoController extends Controller
         ]);
     }
 
-    public function showVideo(string $filename)
+    public function edit(int $video_id)
     {
-        $path = storage_path('app/public/videos/' . $filename);
+        $user = Auth::user();
+        $video = Video::findOrFail($video_id);
 
-        if (!file_exists($path)) {
-            abort(404);
+        if ($user && ($video->user_id === $user->id || $user->role === 'admin')) {
+
+            return view('video.edit', [
+                'video' => $video
+            ]);
+
+        } else {
+            return redirect()->route('home');
+        }
+        
+    }
+
+    public function update(int $video_id, Request $request){
+
+        $request->validate([
+            'title'       => 'required|string|min:5',
+            'description' => 'required|string|min:10',
+            //'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240', // 10MB
+            'video'       => 'mimes:mp4'  
+        ]);
+
+        $user = Auth::user(); 
+        $video = Video::findOrFail($video_id); 
+        
+        // Comprobar permisos: propietario o administrador. 
+        if ( !$user || ($video->user_id !== $user->id && $user->role !== 'admin') ) { 
+            return redirect()->route('home'); 
+        } 
+        
+        // Actualizar los datos sin cambiar el creador original. 
+        $video->title = $request->input('title'); 
+        $video->description = $request->input('description');
+
+        // Subida de la miniatura (imagen)
+        if ($request->hasFile('image')) {
+            
+            if ($video->image &&
+                !Video::where('image', $video->image)
+                    ->where('id', '!=', $video->id)
+                    ->exists() &&
+                !preg_match('/^demo-image-[1-9]\.jpg$/', $video->image 
+            )) {
+                Storage::disk('public')->delete('images/' . $video->image);   
+            }
+            
+            $image = $request->file('image');
+            
+            // Generar un nombre único y seguro
+            $imagePath = time() . '_' . $image->getClientOriginalName();
+            
+            // Guardar la imagen en la carpeta "public/images"
+            $image->storeAs('images', $imagePath, 'public');
+            
+            // Guardar la ruta en la base de datos
+            $video->image = $imagePath;
         }
 
-        return response()->file($path);
+        // Subida del video
+        if ($request->hasFile('video')) {
+            
+            if ($video->video_path &&
+                !Video::where('video_path', $video->video_path)
+                    ->where('id', '!=', $video->id)
+                    ->exists() &&
+                !preg_match('/^demo-video-[1-2]\.mp4$/', $video->video_path)
+            ) {
+                Storage::disk('public')->delete('videos/' . $video->video_path);   
+            }
+
+            $video_file = $request->file('video');
+            
+            // Generar un nombre único y seguro
+            $videoPath = time() . '_' . $video_file->getClientOriginalName();
+            
+            // Guardar la imagen en la carpeta "public/images"
+            $video_file->storeAs('videos', $videoPath, 'public');
+            
+            // Guardar la ruta en la base de datos
+            $video->video_path = $videoPath;
+        }
+
+        $video->save();
+
+        // Redirigimos ala pagina del video editado
+        $returnTo = $request->input('return_to');
+
+        if ($returnTo && str_starts_with($returnTo, '/')) {
+            return redirect($returnTo)
+                ->with('message', 'Vídeo actualizado correctamente');
+        }
+
+        return redirect()
+                ->route('home')
+                ->with('message', 'Vídeo actualizado correctamente');
     }
 
     public function deleteVideo(int $video_id){
@@ -145,81 +224,26 @@ class VideoController extends Controller
 
     }
 
-    public function edit(int $video_id)
+    public function showVideo(string $filename)
     {
-        $user = Auth::user();
-        $video = Video::findOrFail($video_id);
+        $path = storage_path('app/public/videos/' . $filename);
 
-        if ($user && $video->user_id === $user->id) {
-
-            return view('video.edit', [
-                'video' => $video
-            ]);
-
-        } else {
-            return redirect()->route('home');
+        if (!file_exists($path)) {
+            abort(404);
         }
-        
+
+        return response()->file($path);
     }
 
-    public function update(int $video_id, Request $request){
+    public function showImg(string $filename)
+    {
+        $path = storage_path('app/public/images/' . $filename);
 
-        $request->validate([
-            'title'       => 'required|string|min:5',
-            'description' => 'required|string|min:10',
-            //'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240', // 10MB
-            'video'       => 'mimes:mp4'  
-        ]);
-
-        $user = Auth::user();
-        $video = Video::findOrFail($video_id);
-        $video->user_id = $user->id;
-        $video->title = $request->input('title');
-        $video->description = $request->input('description');
-
-        // Subida de la miniatura (imagen)
-        if ($request->hasFile('image')) {
-            
-            if ($video->image) {
-                Storage::disk('public')->delete('images/' . $video->image);   
-            }
-            
-            $image = $request->file('image');
-            
-            // Generar un nombre único y seguro
-            $imagePath = time() . '_' . $image->getClientOriginalName();
-            
-            // Guardar la imagen en la carpeta "public/images"
-            $image->storeAs('images', $imagePath, 'public');
-            
-            // Guardar la ruta en la base de datos
-            $video->image = $imagePath;
+        if (!file_exists($path)) {
+            abort(404);
         }
 
-        // Subida del video
-        if ($request->hasFile('video')) {
-            
-            if ($video->video_path) {
-                Storage::disk('public')->delete('images/' . $video->video_path);   
-            }
-
-            $video_file = $request->file('video');
-            
-            // Generar un nombre único y seguro
-            $videoPath = time() . '_' . $video_file->getClientOriginalName();
-            
-            // Guardar la imagen en la carpeta "public/images"
-            $video_file->storeAs('videos', $videoPath, 'public');
-            
-            // Guardar la ruta en la base de datos
-            $video->video_path = $videoPath;
-        }
-
-        $video->save();
-
-        return redirect()
-                ->route('home')
-                ->with('message', 'Vídeo actualizado correctamente');
+        return response()->file($path);
     }
 
     public function search(Request $request)

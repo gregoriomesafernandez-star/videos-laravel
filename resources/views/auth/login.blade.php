@@ -39,7 +39,7 @@
             @endif
 
          
-            <x-secondary-button class="ms-4" href="{{ route('home') }}" >
+            <x-secondary-button class="ms-4" href="{{ url()->previous() }}">
                 ← Volver
             </x-secondary-button>
             

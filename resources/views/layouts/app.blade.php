@@ -24,15 +24,6 @@
 
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
             <!-- Page Content -->
             <main class="flex-1">
                 <div class="max-w-[1600px] mx-auto mt-[80px] p-6">
@@ -46,44 +37,43 @@
     </body>
 
     <footer class="bg-gray-900 text-gray-300 text-center py-6">
+        
         <!-- INICIO TARJETAS -->
-            <div id="cards" class="w-5/12 mx-auto flex xs:gap-4 md:gap-0">
+        <div id="cards" class="w-full max-w-3xl mx-auto flex justify-center gap-4 px-4">
 
-                <div class="card group">
+            <div class="card group">
 
-                    <span class="card-icon">
-                        M
-                    </span>
+                <span class="card-icon">
+                    M
+                </span>
 
-                    <h2 class="card-category">
-                        Vídeos
-                    </h2>
+                <h2 class="card-category">
+                    Vídeos
+                </h2>
 
-                    <p class="card-description">
-                        Videos HD, comentalos o compartelos con tus amigos
-                    </p>
-
-                </div>
-
-                <div class="card group">
-
-                    <span class="card-icon">
-                        ]
-                    </span>
-
-                    <h2 class="card-category">
-                        Música
-                    </h2>
-
-                    <p class="card-description">
-                        La mejor música de calidad actualizada
-                    </p>
-
-                </div>
-
-                
+                <p class="card-description">
+                    Vídeos HD, coméntalos o compártelos con tus amigos.
+                </p>
 
             </div>
+
+            <div class="card group">
+
+                <span class="card-icon">
+                    ]
+                </span>
+
+                <h2 class="card-category">
+                    Música
+                </h2>
+
+                <p class="card-description">
+                    La mejor música de calidad actualizada.
+                </p>
+
+            </div>
+
+        </div>
         <p class="text-sm mt-2">© Proyecto Laravel Videos</p>
     </footer>
 </html>

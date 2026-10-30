@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50" x-data="{ open: false }">
+<nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-lg shadow-md z-50" x-data="{ open: false }">
 
     <!-- Primary Navigation Menu -->
     <div class="w-full flex justify-between xs:px-4 lg:px-20">
@@ -82,19 +82,21 @@
                 </div>
             </div>
             @else
-                
-                <!-- Usuario NO logueado -->
-                <x-secondary-button href="{{ route('login') }}" > 
-                         <i class="fa-solid fa-user"></i> 
-                       Login
-                </x-secondary-button>
+                <div class="flex gap-2">
+                    <!-- Usuario NO logueado -->
+                    <x-secondary-button href="{{ route('login') }}" > 
+                            <i class="fa-solid fa-user"></i> 
+                        Login
+                    </x-secondary-button>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" 
-                       class="floating-button text-lg font-medium inline-block px-5 py-1">
-                        Registrar
-                    </a>
-                @endif
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" 
+                        class="floating-button text-lg font-medium inline-block px-5 py-1">
+                            Registrar
+                        </a>
+                    @endif
+                </div>
+                
 
             @endauth
 
@@ -121,59 +123,57 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-                <div class="
-                    ms-4 
-                    font-medium 
-                    text-base 
-                    text-gray-700
-                ">
-                    {{ Auth::check() ? Auth::user()->name : '' }}
-                </div>
-
-            
-
+    
             @auth
-            <div class="mt-6">
+                <div class="mt-6">
 
-                <!-- BUSCAR -->
-                <form action="{{ route('search.video')}}" method="GET" role="search" class="min-[780px]:hidden flex items-center mb-2 ms-4 gap-2">
+                    <!-- BUSCAR -->
+                    <form action="{{ route('search.video')}}" method="GET" role="search" class="min-[780px]:hidden flex items-center mb-2 ms-4 gap-2">
 
-                    <!-- Input BUSCAR -->
-                    <input type="text" name="search" placeholder="¿Qué quieres ver?" class="input-search">
+                        <!-- Input BUSCAR -->
+                        <input type="text" name="search" placeholder="¿Qué quieres ver?" class="input-search">
 
-                                                                    
-                    <button type="submit" class="px-4 py-1 floating-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                </form>
+                                                                        
+                        <button type="submit" class="px-4 py-1 floating-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </form>
 
-                <!-- Botón crear vídeo-->
-                <x-responsive-nav-link :href="route('create.video')">
-                    Subir Vídeo
-                </x-responsive-nav-link>
-
-                <!-- Botón mis datos-->
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    Mis datos
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        Cerrar Sesión
+                    <!-- Botón crear vídeo-->
+                    <x-responsive-nav-link :href="route('create.video')">
+                        Subir Vídeo
                     </x-responsive-nav-link>
-                </form>
-            </div>
+
+                    <!-- Nombre usuario -->
+                    <div class="
+                        ms-4 
+                        font-medium 
+                        text-base 
+                        text-gray-700
+                    ">
+                        {{ Auth::check() ? Auth::user()->name : '' }}
+                    </div>
+                    
+                    <!-- Botón mis datos-->
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        Mis datos
+                    </x-responsive-nav-link>
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            Cerrar Sesión
+                        </x-responsive-nav-link>
+                    </form>
+                </div>
             @else
-
-
 
                 <!-- BUSCAR -->
                 <form action="{{ route('search.video')}}" method="GET" role="search" class="min-[780px]:hidden flex items-center mb-4 ms-4 gap-2">
